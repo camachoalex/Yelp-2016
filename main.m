@@ -20,7 +20,6 @@
 % run readTRAINCSV.m
 %% Beginning of the script
 run('AddPaths.m')
-%BLAH   SDA DADA
 %%
 for j=1:4
 vals = [5 10 15 20];
