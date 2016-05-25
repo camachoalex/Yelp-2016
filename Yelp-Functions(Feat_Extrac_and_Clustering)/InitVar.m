@@ -7,7 +7,7 @@ train_path = 'C:\Users\Alejandro\Dropbox (CSU Fullerton)\Alejandro - Yelp\train_
 fileContents = dir(train_path);
 fileContents = fileContents(3:end);
 numFiles = length(fileContents);
-outputFilePath = 'C:\Users\Alejandro\Desktop\Yelp-Code\DesktopOutput\';
+outputFilePath = './Output';
 
 yelp_data_struct = struct('train_path',train_path,...
                           'fileContents',fileContents,...
