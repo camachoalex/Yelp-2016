@@ -19,18 +19,19 @@
 %% Import business_id && labels
 % run readTRAINCSV.m
 %% Beginning of the script
-addpath('./Yelp-Functions(Feat_Extrac_and_Clustering)/','./DataExploration_Filtering_SomeStats/')
-% global yelp_info; % I don't think this makes a difference. I like the cyan color.
-k_pts_det=[5 10 15 20];
-parfor j=1:4
-yelp_info = InitVar(k_pts_det(j), 50);%(number of features per image, number of clusters).
+run('AddPaths.m')
+
+%%
+for j=1:4
+vals = [5 10 15 20];
+global yelp_info; % I don't think this makes a difference. I like the cyan color.
+yelp_info = InitVar(vals(j), 50);%(number of features per image, number of clusters).
 tic; % start timer
 %% Extract Surf Features
 yelp_info.SurfMat = FeatureExtraction(yelp_info.featPerImage,...
                             yelp_info.train_path,...
                             yelp_info.fileContents, ...
                             yelp_info.numFiles);
-% save(outputFileName, 'yelp_info');
 %% Run kmeans and calculate centroids/words.
 [   tmp,...
     yelp_info.idx,...
@@ -42,6 +43,8 @@ yelp_info.SurfMat = FeatureExtraction(yelp_info.featPerImage,...
 for i=1:length(tmp)
     yelp_info.SurfMat{i,6}=cell2mat(tmp(i));
 end
-yelp_info.SurfMat;
 toc %end timer
+
+save(strcat('Yelp_',num2str(vals(j)),'_keypoints'),'yelp_info');
+clear yelp_info
 end
