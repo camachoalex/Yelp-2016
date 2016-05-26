@@ -51,9 +51,15 @@ B{3}=[A{1,3};A{2,3};A{3,3};A{4,3};A{5,3}];
 B{4}=[A{1,4};A{2,4};A{3,4};A{4,4}];
 B{5}=[A{1,5};A{2,5};A{3,5}];
 %% plot the images
-idx=0;
-for i=1:length(unique(B{5}))
-    idx=idx+1;
-    subplot(2,2,idx)
-    imshow(char(B{5}(i)));
+cluster_group = chosen_ones(1:5);
+for k=1:length(B)
+    idx=0;
+    tmp=unique(B{k})
+    for i=1:length(tmp)
+        idx=idx+1;
+        subplot(3,2,idx)
+        f = imshow(char(tmp(i)));
+    end
+    savefig(strcat('centroid_',num2str(cluster_group(k) ),'_train' ));
 end
+close all;
